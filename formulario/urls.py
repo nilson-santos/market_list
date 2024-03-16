@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import nome_create, nome_update, nome_delete, lista, search_view
+from .views import item_create, item_update, item_delete, lista, search_view
 
 urlpatterns = [
-    path('', lista, name='nome_lista'),
+    path('', lista, name='item_lista'),
     path('search/', search_view, name='search_view'),
-    path('novo/', nome_create, name='nome_create'),
-    path('update/<uuid:id>/', nome_update, name='nome_update'),
-    path('delete/<uuid:id>/', nome_delete, name='nome_delete'),
+    path('novo/', item_create, name='item_create'),
+    path('update/<uuid:id>/', item_update, name='item_update'),
+    path('delete/<uuid:id>/', item_delete, name='item_delete'),
 ]

@@ -1,13 +1,13 @@
 <ul class="list-group">
-    {% for person in persons %}
+    {% for item in items %}
 
-    <li class="list-group-item">{{ person.nome }} {{ person.sobrenome}}
+    <li class="list-group-item">{{ item.item }} {{ item.amount}}
         <div class="float-right">
-            <a href="{% url 'nome_update' person.id %}" hx-get="{% url 'nome_update' person.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
+            <a href="{% url 'item_update' item.id %}" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
                 <span class="bi-pencil"></span>
             </a>
 
-            <a href="{% url 'nome_delete' person.id %}" hx-get="{% url 'nome_delete' person.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
+            <a href="{% url 'item_delete' item.id %}" hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
                 <span class="bi-trash"></span>
             </a>
         </div>
@@ -21,16 +21,16 @@
 
 <nav class="pagination justify-content-center" aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-    {% if persons.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ persons.previous_page_number }}" hx-get="?page={{ persons.previous_page_number }}" hx-target="#partial" hx-trigger="click">Anterior</a></li>
+    {% if items.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}" hx-get="?page={{ items.previous_page_number }}" hx-target="#partial" hx-trigger="click">Anterior</a></li>
         {% else %}
         <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>
         {% endif %}
 
-        <li class="page-item disabled" disabled><a class="page-link" href="#">{{ persons.number }}</a></li>
+        <li class="page-item disabled" disabled><a class="page-link" href="#">{{ items.number }}</a></li>
 
-        {% if persons.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ persons.next_page_number }}" hx-get="?page={{ persons.next_page_number }}" hx-target="#partial" hx-trigger="click">Próximo</a></li>
+        {% if items.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}" hx-get="?page={{ items.next_page_number }}" hx-target="#partial" hx-trigger="click">Próximo</a></li>
         {% else %}
         <li class="page-item disabled"><a class="page-link" href="#">Próximo</a></li>
         {% endif %}

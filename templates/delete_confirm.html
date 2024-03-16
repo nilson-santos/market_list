@@ -4,11 +4,11 @@
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
-            <label>Deseja realmente excluir o registro de <strong>{{ person.nome }}  {{ person.sobrenome }}?</strong></label>
+            <label>Deseja realmente excluir o registro de <strong>{{ item.nome }}  {{ item.sobrenome }}?</strong></label>
         </div>
 
-        <a href="{% url 'nome_lista' %}" class="btn btn-secondary float-left" hx-get="{% url 'nome_lista' %}" hx-target="#partial" hx-trigger="click">Voltar</a>
-        <button type="submit" class="btn btn-danger float-right" hx-post="{% url 'nome_delete' person.id %}" hx-target="#partial" hx-trigger="click">Apagar</button>
+        <a href="{% url 'item_lista' %}" class="btn btn-secondary float-left" hx-get="{% url 'item_lista' %}" hx-target="#partial" hx-trigger="click">Voltar</a>
+        <button type="submit" class="btn btn-danger float-right" hx-post="{% url 'item_delete' item.id %}" hx-target="#partial" hx-trigger="click">Apagar</button>
     </form>
 </div>
 
