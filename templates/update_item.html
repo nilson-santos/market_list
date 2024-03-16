@@ -5,7 +5,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label>Item</label>
-            <input name="{{ form.item.item }}" type="text" class="form-control" {% if form.item.value != None %}value="{{ form.item.value }}"{% endif %}>
+            <input name="{{ form.item.name }}" type="text" class="form-control" {% if form.item.value != None %}value="{{ form.item.value }}"{% endif %}>
         </div>
         <div class="form-group">
             <label>Amount</label>
@@ -14,10 +14,10 @@
 
         <div class="form-group">
           <label for="">Estado</label>
-          <select name="{{ form.category.category }}" class="form-control">
+          <select name="{{ form.category.name }}" class="form-control">
 
-            {% for state in form.state %}
-            {{ state }}
+            {% for category in form.category %}
+            {{ category }}
             {% endfor %}
           </select>
         </div>

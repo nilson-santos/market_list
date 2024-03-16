@@ -50,7 +50,7 @@ def item_create(request):
 
 def item_update(request, id):
     item = get_object_or_404(Item, pk=id)
-    form = PostForm(request.POST or None, instance=Item)
+    form = PostForm(request.POST or None, instance=item)
     if form.is_valid():
         form.save()
         messages.success(request, 'Atualizado')
