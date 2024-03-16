@@ -76,10 +76,6 @@ def item_delete(request, id):
 def on_cart(request, id):
     item = get_object_or_404(Item, pk=id)
     on_cart = item.on_cart
+    Item.objects.filter(id=id).update(on_cart=not on_cart)
 
-    if request.method == 'POST':
-        Item.objects.filter(id=id).update(on_cart=not on_cart)
-        return redirect('item_lista')
-
-    context = {'item': item}
-    return render(request, 'on_cart_confirm.html', context)
+    return redirect('item_lista')
