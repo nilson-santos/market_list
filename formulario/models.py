@@ -6,7 +6,8 @@ import uuid
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    category = models.CharField(max_length=10)
+    category = models.CharField(max_length=11)
+    color = models.CharField(max_length=7, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

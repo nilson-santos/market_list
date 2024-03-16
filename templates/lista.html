@@ -31,7 +31,7 @@
 <ul class="list-group">
     {% for item in items %}
 
-    <li class="list-group-item" style="display: flex; justify-content: space-between; align-items: center;">
+    <li class="list-group-item" style="display: flex; justify-content: space-between; align-items: center; background-color: {{ item.category.color }};">
         {{ item.item }}
 
         <div class="float-right">
