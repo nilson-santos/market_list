@@ -4,18 +4,15 @@ FROM python:3.12-alpine
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# upgrade pip
-RUN pip install --upgrade pip
-
 # get curl for healthchecks
 RUN apk add curl
 
 # permissions and nonroot user for tightened security
 # RUN adduser -D nonroot
 # RUN mkdir /home/app/ && chown -R nonroot:nonroot /home/app
-# RUN mkdir -p /var/log/flask-app && touch /var/log/flask-app/flask-app.err.log && touch /var/log/flask-app/flask-app.out.log
-# RUN chown -R nonroot:nonroot /var/log/flask-app
-# WORKDIR /home/app
+# RUN mkdir -p /var/log/django-app && touch /var/log/django-app/django-app.err.log && touch /var/log/django-app/django-app.out.log
+# RUN chown -R nonroot:nonroot /var/log/django-app
+WORKDIR /app
 # USER nonroot
 
 # copy all the files to the container
@@ -24,7 +21,12 @@ COPY --chown=nonroot:nonroot . .
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# running migrations
+RUN python manage.py migrate
+RUN python manage.py collectstatic --no-input
+
 # define the port number the container should expose
 EXPOSE 5000
 
-CMD ["python", "app.py"]
+# gunicorn
+CMD ["gunicorn", "--config", "gunicorn-cfg.py", "project.wsgi"]
