@@ -23,6 +23,7 @@ class Item(models.Model):
     item = models.CharField(max_length=20)
     amount = models.CharField(blank=True, max_length=30)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.PROTECT)
+    on_cart = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

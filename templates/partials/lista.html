@@ -12,6 +12,15 @@
             <a href="{% url 'item_delete' item.id %}" hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
                 <span class="bi-trash"></span>
             </a>
+            {% if item.on_cart %}
+            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
+                <span class="bi-cart-check-fill"></span>
+            </a>
+            {% else %}
+            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
+                <span class="bi-cart"></span>
+            </a>
+            {% endif %}
         </div>
     </li>
 

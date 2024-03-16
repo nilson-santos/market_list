@@ -4,7 +4,7 @@ from .models import Item
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib import messages
-
+from django.views.decorators.csrf import csrf_exempt
 
 def search_view(request):
     if request.method == 'GET':
@@ -70,3 +70,16 @@ def item_delete(request, id):
 
     context = {'item': item}
     return render(request, 'delete_confirm.html', context)
+
+
+@csrf_exempt
+def on_cart(request, id):
+    item = get_object_or_404(Item, pk=id)
+    on_cart = item.on_cart
+
+    if request.method == 'POST':
+        Item.objects.filter(id=id).update(on_cart=not on_cart)
+        return redirect('item_lista')
+
+    context = {'item': item}
+    return render(request, 'on_cart_confirm.html', context)
