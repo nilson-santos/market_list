@@ -1,0 +1,24 @@
+#on:
+#  push:
+#    branches:
+#      - main
+#name: 🚀 Deploy homepage on push
+#jobs:
+#  web-deploy:
+#    name: 🎉 Deploy
+#    runs-on: ubuntu-latest
+#    steps:
+#    - name: 🚚 Get latest code
+#      uses: actions/checkout@v4
+#    - name: list all files
+#      run: ls -lha
+#    - name: 🖥 SSH conect and sync files
+#      uses: appleboy/ssh-action@master
+#      with:
+#        host: ${{ secrets.SSH_HOST }}
+#        username: ${{ secrets.SSH_USERNAME }}
+#        key: ${{ secrets.SSH_PRIVATE_KEY }}
+#        script: |
+#          [ -d apps/market_list/ ] && cd apps/market_list/ || { mkdir -p apps/ && cd apps/; }
+#          [ -d ".git" ] && git pull || { git clone git@github.com:nilson-santos/market_list.git && cd market_list/; }
+#          [ -e ".env" ] && docker compose up -d --build && docker image prune -af || echo "NOT FOUND .env FILE"

@@ -1,0 +1,30 @@
+{% extends "base_site.html" %} {% block site_title %}Edição de Nome{% endblock %} {% block site_content %}
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Nome</label>
+            <input name="{{ form.nome.name }}" type="text" class="form-control" {% if form.nome.value != None %}value="{{ form.nome.value }}"{% endif %}>
+            <!-- <input type="text" id="fname" name="fname" value="aparece"> -->
+        </div>
+        <div class="form-group">
+            <label>Sobrenome</label>
+            <input name="{{ form.sobrenome.name }}" type="text" class="form-control" {% if form.sobrenome.value != None %}value="{{ form.sobrenome.value }}"{% endif %}>
+        </div>
+
+        <div class="form-group">
+          <label for="">Estado</label>
+          <select name="{{ form.state.name }}" class="form-control">
+
+            {% for state in form.state %}
+            {{ state }}
+            {% endfor %}
+          </select>
+        </div>
+
+        <a href="{% url 'nome_lista' %}" class="btn btn-secondary float-left" hx-get="{% url 'nome_lista' %}" hx-target="#partial" hx-trigger="click">Voltar</a>
+        <button type="submit" class="btn btn-success float-right" hx-post="{% url 'nome_create' %}" hx-target="#partial" hx-trigger="click">Salvar</button>
+    </form>
+</div>
+{% endblock %}

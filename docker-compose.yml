@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  nginx-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile_nginx
+    restart: always
+    volumes:
+      - ./default.conf:/tmp/default.conf
+    environment:
+      - FLASK_SERVER_ADDR=flask-app:8000
+    networks:
+      - front-end
+    depends_on:
+      - flask-app
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:8080/health-check || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    command: /app/start.sh
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile_flask
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:8000/flask-health-check || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+    command: sh -c "celery -A tasks worker --loglevel INFO & gunicorn -w 3 -t 60 -b 0.0.0.0:8000 app:app"
+    networks:
+      - front-end
+      - back-end
+
+networks:
+  front-end:
+    external: true
+  back-end:
+    external: true
