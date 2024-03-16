@@ -49,24 +49,24 @@ def item_create(request):
 
 
 def item_update(request, id):
-    Item = get_object_or_404(Item, pk=id)
+    item = get_object_or_404(Item, pk=id)
     form = PostForm(request.POST or None, instance=Item)
     if form.is_valid():
         form.save()
         messages.success(request, 'Atualizado')
         return redirect('item_lista')
 
-    context = {'form': form, 'Item': Item}
+    context = {'form': form, 'item': item}
     return render(request, 'update_item.html', context)
 
 
 def item_delete(request, id):
-    Item = get_object_or_404(Item, pk=id)
+    item = get_object_or_404(Item, pk=id)
 
     if request.method == 'POST':
-        Item.delete()
+        item.delete()
         messages.success(request, 'Excluído')
         return redirect('item_lista')
 
-    context = {'Item': Item}
+    context = {'item': item}
     return render(request, 'delete_confirm.html', context)
