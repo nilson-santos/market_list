@@ -32,8 +32,10 @@
     {% for item in items %}
 
     <li class="list-group-item" style="display: flex; justify-content: space-between; align-items: center;">
-        {{ item.item }} {{ item.amount}}
+        {{ item.item }}
+
         <div class="float-right">
+            {{ item.amount}}
             <a href="{% url 'item_update' item.id %}" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
                 <span class="bi-pencil"></span>
             </a>
