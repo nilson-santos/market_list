@@ -13,19 +13,19 @@
       <th scope="row">{{ item.item }}</th>
       <td>{{ item.amount }}</td>
       <td>
-          <a href="{% url 'item_update' item.id %}" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
+          <a hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
               <span class="bi-pencil"></span>
           </a>
-          <a href="{% url 'item_delete' item.id %}" hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
+          <a hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
               <span class="bi-trash"></span>
           </a></td>
       <td>
             {% if item.on_cart %}
-            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
+            <a hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
                 <span class="bi-cart-check-fill pull-right"></span>
             </a>
             {% else %}
-            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
+            <a hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
                 <span class="bi-cart"></span>
             </a>
             {% endif %}

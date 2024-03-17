@@ -12,8 +12,11 @@
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
           <img src="{{ ASSETS_ROOT }}/static/images/icon.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
-          Lista de Compras
+          Grocery list
         </a>
+      <form class="d-flex">
+         <button class="btn btn-outline-success" type="submit">Hide itens</button>
+      </form>
       </div>
     </nav>
 
@@ -21,12 +24,12 @@
 
 <div style="height: 20px;"></div>
 
-<a href="/novo" class="btn btn-default btn-sm btn-success" hx-get="{% url 'item_create' %}" hx-target="#modal" hx-trigger="click">Novo Item</a>
+<a href="/novo" class="btn btn-default btn-sm btn-success" hx-get="{% url 'item_create' %}" hx-target="#modal" hx-trigger="click">New Item</a>
 
 <div style="height: 20px;"></div>
 
 <nav class="navbar navbar-light bg-light justify-content-center">
-    <input class="form-control mr-2 col-9" type="search" name="search" placeholder="Buscar..." aria-label="Search" hx-get="{% url 'search_view' %}" hx-target="#search-results" hx-trigger="keyup delay:500ms">
+    <input class="form-control mr-2 col-9" type="search" name="search" placeholder="Search..." aria-label="Search" hx-get="{% url 'search_view' %}" hx-target="#search-results" hx-trigger="keyup delay:500ms">
 </nav>
 
 
@@ -49,19 +52,19 @@
       <th scope="row">{{ item.item }}</th>
       <td>{{ item.amount }}</td>
       <td>
-          <a href="{% url 'item_update' item.id %}" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
+          <a hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
               <span class="bi-pencil"></span>
           </a>
-          <a href="{% url 'item_delete' item.id %}" hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
+          <a hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
               <span class="bi-trash"></span>
           </a></td>
       <td>
             {% if item.on_cart %}
-            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
+            <a hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
                 <span class="bi-cart-check-fill pull-right"></span>
             </a>
             {% else %}
-            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
+            <a hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
                 <span class="bi-cart"></span>
             </a>
             {% endif %}
