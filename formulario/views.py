@@ -10,9 +10,9 @@ def search_view(request):
     if request.method == 'GET':
         search = request.GET.get('search')
         if search:
-            all = Item.objects.filter(Q(item__icontains=search)).order_by('item', 'category')
+            all = Item.objects.filter(Q(item__icontains=search)).order_by('category', 'item')
         else:
-            all = Item.objects.all().order_by('item', 'category')
+            all = Item.objects.all().order_by('category', 'item')
         
         paginator = Paginator(all, 10)
         pages = request.GET.get('page')
@@ -24,9 +24,9 @@ def search_view(request):
 def lista(request):
     search = request.GET.get('search')
     if search:
-        all = Item.objects.filter(Q(item__icontains=search)).order_by('item', 'category')
+        all = Item.objects.filter(Q(item__icontains=search)).order_by('category', 'item')
     else:
-        all = Item.objects.all().order_by('item', 'category')
+        all = Item.objects.all().order_by('category', 'item')
 
     paginator = Paginator(all, 10)
     pages = request.GET.get('page')
