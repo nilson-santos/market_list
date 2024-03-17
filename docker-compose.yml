@@ -14,7 +14,7 @@ services:
     depends_on:
       - django-app
     healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail localhost:8080/health-check || exit 1"]
+      test: ["CMD-SHELL", "curl --silent --fail localhost:8081/health-check || exit 1"]
       interval: 10s
       timeout: 10s
       retries: 3
