@@ -22,8 +22,8 @@
           </select>
         </div>
 
-        <a href="{% url 'item_lista' %}" class="btn btn-secondary float-left" hx-get="{% url 'item_lista' %}" hx-target="#partial" hx-trigger="click">Voltar</a>
-        <button type="submit" class="btn btn-success float-right" hx-post="{% url 'item_update' item.id %}" hx-target="#partial" hx-trigger="click">Salvar</button>
+        <a href="{% url 'item_lista' %}" class="btn btn-secondary float-left" hx-get="{% url 'item_lista' %}" hx-target="#partial" hx-trigger="click">Back</a>
+        <button type="submit" class="btn btn-success float-right" hx-post="{% url 'item_update' item.id %}" hx-target="#partial" hx-trigger="click">Update</button>
     </form>
 </div>
 {% endblock %}

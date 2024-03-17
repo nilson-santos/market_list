@@ -51,7 +51,7 @@ def item_create(request):
 
     if form.is_valid():
         form.save()
-        messages.success(request, 'Criado')
+        messages.success(request, 'Saved successfully!')
         return redirect('item_lista')
 
     context = {'form': form}
@@ -64,7 +64,7 @@ def item_update(request, id):
     form = PostForm(request.POST or None, instance=item)
     if form.is_valid():
         form.save()
-        messages.success(request, 'Atualizado')
+        messages.success(request, 'Updated successfully!!')
         return redirect('item_lista')
 
     context = {'form': form, 'item': item}
@@ -76,7 +76,7 @@ def item_delete(request, id):
 
     if request.method == 'POST':
         item.delete()
-        messages.success(request, 'Excluído')
+        messages.success(request, 'Successfully deleted!')
         return redirect('item_lista')
 
     context = {'item': item}
