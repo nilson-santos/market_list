@@ -14,9 +14,11 @@
           <img src="{{ ASSETS_ROOT }}/static/images/icon.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
           Grocery list
         </a>
-      <form class="d-flex">
-         <button class="btn btn-outline-success" type="submit">Hide itens</button>
-      </form>
+          {% if cookie == "hide" %}
+         <a class="btn btn-outline-success" type="submit" hx-get="{% url 'hide_items' %}" hx-target="#partial" hx-trigger="click">Show items</a>
+          {% else %}
+          <a class="btn btn-outline-success" type="submit" hx-get="{% url 'hide_items' %}" hx-target="#partial" hx-trigger="click">Hide items</a>
+          {% endif %}
       </div>
     </nav>
 
@@ -40,7 +42,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col" >Itens</th>
+      <th scope="col">Itens</th>
       <th scope="col">Amount</th>
       <th scope="col">Edit</th>
       <th scope="col">Handle</th>
@@ -60,11 +62,11 @@
           </a></td>
       <td>
             {% if item.on_cart %}
-            <a hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
+            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
                 <span class="bi-cart-check-fill pull-right"></span>
             </a>
             {% else %}
-            <a hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
+            <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
                 <span class="bi-cart"></span>
             </a>
             {% endif %}
@@ -80,17 +82,17 @@
 <nav class="pagination justify-content-center" aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
     {% if items.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}" hx-get="?page={{ items.previous_page_number }}" hx-target="#partial" hx-trigger="click">Anterior</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}" hx-get="?page={{ items.previous_page_number }}" hx-target="#partial" hx-trigger="click"><<</a></li>
         {% else %}
-        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Anterior</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1"><<</a></li>
         {% endif %}
 
         <li class="page-item disabled" disabled><a class="page-link" href="#">{{ items.number }}</a></li>
 
         {% if items.has_next %}
-        <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}" hx-get="?page={{ items.next_page_number }}" hx-target="#partial" hx-trigger="click">Próximo</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}" hx-get="?page={{ items.next_page_number }}" hx-target="#partial" hx-trigger="click">>></a></li>
         {% else %}
-        <li class="page-item disabled"><a class="page-link" href="#">Próximo</a></li>
+        <li class="page-item disabled"><a class="page-link" href="#">>></a></li>
         {% endif %}
     </ul>
   </nav>

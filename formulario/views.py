@@ -6,32 +6,43 @@ from django.db.models import Q
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
+
+def hide_items(request):
+    cookie = request.COOKIES.get('hide_items')
+    response = redirect('item_lista')
+    if cookie == 'show' or cookie is None:
+        response.set_cookie('hide_items', 'hide')
+    else:
+        response.set_cookie('hide_items', 'show')
+    return response
+
+
 def search_view(request):
     if request.method == 'GET':
         search = request.GET.get('search')
-        if search:
+        cookie = request.COOKIES.get('hide_items')
+        if cookie != 'hide':
             all = Item.objects.filter(Q(item__icontains=search)).order_by('category', 'item')
         else:
-            all = Item.objects.all().order_by('category', 'item')
-        
+            all = Item.objects.filter(Q(item__icontains=search) & (~Q(amount__isnull=True) & ~Q(amount=''))).order_by('category', 'item')
         paginator = Paginator(all, 10)
         pages = request.GET.get('page')
         items = paginator.get_page(pages)
-        context = {'items': items}
+        context = {'items': items, 'cookie': cookie}
         return render(request, 'partials/lista.html', context)
 
 
 def lista(request):
     search = request.GET.get('search')
-    if search:
-        all = Item.objects.filter(Q(item__icontains=search)).order_by('category', 'item')
-    else:
+    cookie = request.COOKIES.get('hide_items')
+    if cookie != 'hide':
         all = Item.objects.all().order_by('category', 'item')
-
+    else:
+        all = Item.objects.exclude(amount__isnull=True).exclude(amount='').order_by('category', 'item')
     paginator = Paginator(all, 10)
     pages = request.GET.get('page')
     items = paginator.get_page(pages)
-    context = {'items': items}
+    context = {'items': items, 'cookie': cookie}
     return render(request, 'lista.html', context)
 
 
