@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0013_category_item_delete_person_delete_state'),
+        ('grocery_list', '0013_category_item_delete_person_delete_state'),
     ]
 
     operations = [

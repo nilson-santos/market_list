@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0007_state_alter_person_arma_delete_gun'),
+        ('grocery_list', '0007_state_alter_person_arma_delete_gun'),
     ]
 
     operations = [

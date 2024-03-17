@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0006_alter_gun_id_alter_person_id'),
+        ('grocery_list', '0006_alter_gun_id_alter_person_id'),
     ]
 
     operations = [
@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='person',
             name='arma',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='formulario.state'),
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='grocery_list.state'),
         ),
         migrations.DeleteModel(
             name='Gun',

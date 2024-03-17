@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0017_alter_category_color'),
+        ('grocery_list', '0017_alter_category_color'),
     ]
 
     operations = [

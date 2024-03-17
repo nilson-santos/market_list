@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0008_rename_arma_person_state'),
+        ('grocery_list', '0008_rename_arma_person_state'),
     ]
 
     operations = [

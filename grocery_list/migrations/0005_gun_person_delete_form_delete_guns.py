@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0004_auto_20210210_2034'),
+        ('grocery_list', '0004_auto_20210210_2034'),
     ]
 
     operations = [
@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False)),
                 ('nome', models.CharField(max_length=40)),
                 ('sobrenome', models.CharField(blank=True, max_length=10, null=True)),
-                ('arma', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='formulario.gun')),
+                ('arma', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='grocery_list.gun')),
             ],
         ),
         migrations.DeleteModel(

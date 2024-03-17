@@ -7,7 +7,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0011_alter_state_options'),
+        ('grocery_list', '0011_alter_state_options'),
     ]
 
     operations = [

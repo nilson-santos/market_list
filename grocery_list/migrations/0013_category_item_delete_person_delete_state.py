@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('formulario', '0012_person_created_at_person_updated_at_state_created_at_and_more'),
+        ('grocery_list', '0012_person_created_at_person_updated_at_state_created_at_and_more'),
     ]
 
     operations = [
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('amount', models.CharField(blank=True, max_length=30)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='formulario.category')),
+                ('category', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.PROTECT, to='grocery_list.category')),
             ],
         ),
         migrations.DeleteModel(
