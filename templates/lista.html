@@ -28,35 +28,42 @@
 
 <div id="search-results">
 
-<ul class="list-group">
-    {% for item in items %}
-
-    <li class="list-group-item" style="display: flex; justify-content: space-between; align-items: center; background-color: {{ item.category.color }};">
-        {{ item.item }}
-
-        <div class="float-right">
-            {{ item.amount}}
-            <a href="{% url 'item_update' item.id %}" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
-                <span class="bi-pencil"></span>
-            </a>
-
-            <a href="{% url 'item_delete' item.id %}" hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
-                <span class="bi-trash"></span>
-            </a>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" >Itens</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in items %}
+    <tr class="table-{{ item.category.color }}">
+      <th scope="row">{{ item.item }}</th>
+      <td>{{ item.amount }}</td>
+      <td>
+          <a href="{% url 'item_update' item.id %}" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
+              <span class="bi-pencil"></span>
+          </a>
+          <a href="{% url 'item_delete' item.id %}" hx-get="{% url 'item_delete' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-danger">
+              <span class="bi-trash"></span>
+          </a></td>
+      <td>
             {% if item.on_cart %}
             <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-success">
-                <span class="bi-cart-check-fill"></span>
+                <span class="bi-cart-check-fill pull-right"></span>
             </a>
             {% else %}
             <a hx-post="{% url 'on_cart' item.id %}" hx-target="#partial" hx-trigger="click" class="btn btn-default btn-sm btn-secondary">
                 <span class="bi-cart"></span>
             </a>
             {% endif %}
-        </div>
-    </li>
-
-    {% endfor %}
-</ul>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
 
 <div style="height: 20px;"></div>
 
