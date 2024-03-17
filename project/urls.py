@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import flask_health_check
+from .views import django_health_check
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('grocery_list.urls')),
-    path('flask-health-check/', flask_health_check)
+    path('django-health-check/', django_health_check)
 ]
