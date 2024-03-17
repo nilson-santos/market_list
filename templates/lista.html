@@ -1,15 +1,21 @@
 {% extends "base_site.html" %} {% block site_title %}Lista de Compras{% endblock %} {% block site_content %}
 
 {% if messages %}
-
 {% for message in messages %}
 <script>
     messageSuccess('{{ message }}');
 </script>
-    
 {% endfor %}
 {% endif %}
 
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="{{ ASSETS_ROOT }}/static/images/icon.png" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+          Lista de Compras
+        </a>
+      </div>
+    </nav>
 
 <span class="oi oi-icon-name" title="icon name" aria-hidden="true"></span>
 
