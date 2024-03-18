@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: Dockerfile_django
     volumes:
-      - staticfiles:/staticfiles
+      - staticfiles:/app/staticfiles
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --fail localhost:8000/django-health-check || exit 1"]
