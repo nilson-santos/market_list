@@ -136,7 +136,4 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-# Assets Management
-ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets')
-
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
