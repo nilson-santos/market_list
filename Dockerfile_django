@@ -18,7 +18,7 @@ RUN python manage.py migrate
 RUN python manage.py collectstatic --no-input
 
 # define the port number the container should expose
-EXPOSE 5000
+# EXPOSE 5000
 
 # gunicorn
-CMD ["gunicorn", "--config", "gunicorn-cfg.py", "project.wsgi"]
+# CMD ["gunicorn", "--config", "gunicorn-cfg.py", "project.wsgi"]

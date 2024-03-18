@@ -33,6 +33,7 @@ services:
       retries: 3
     ports:
       - "8000:8000"
+    command: gunicorn --config gunicorn-cfg.py project.wsgi
     networks:
       - front-end
       - back-end
