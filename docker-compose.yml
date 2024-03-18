@@ -14,7 +14,7 @@ services:
     networks:
       - front-end
     depends_on:
-      - django-app
+      - django-marke-list
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --fail localhost:8081/health-check || exit 1"]
       interval: 10s
