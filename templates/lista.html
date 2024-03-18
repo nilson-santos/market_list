@@ -51,8 +51,8 @@
   <tbody>
   {% for item in items %}
     <tr class="table-{{ item.category.color }}">
-      <th scope="row">{{ item.item }}</th>
-      <td>{{ item.amount }}</td>
+      <th scope="row" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" >{{ item.item }}</th>
+      <td hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click">{{ item.amount }}</td>
       <td>
           <a hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
               <span class="bi-pencil"></span>
