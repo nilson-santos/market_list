@@ -23,4 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('grocery_list.urls')),
     path('django-health-check/', django_health_check)
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
