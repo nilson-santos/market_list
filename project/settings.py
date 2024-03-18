@@ -32,7 +32,7 @@ SECRET_KEY = getenv('SECRET_KEY', 'adskfjhasdfjkh3456y7')
 DEBUG = os.getenv('DEBUG') == 'True'
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://lista.nilson.com.br", "https://www.lista.nilson.com.br"]
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS').split(',')
 
 
 # Application definition
