@@ -4,13 +4,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_nginx
+        - volumes:
+            - shared_data:/shared_folder
     restart: always
     volumes:
       - ./default.conf:/tmp/default.conf
+      - ./staticfiles:/staticfiles
     environment:
       - DJANGO_SERVER_ADDR=django-marke-list:8000
-    ports:
-      - "8081:8081"
     networks:
       - front-end
     depends_on:
@@ -25,14 +26,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_django
+    volumes:
+      - ./staticfiles:/staticfiles
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --fail localhost:8000/django-health-check || exit 1"]
       interval: 10s
       timeout: 10s
       retries: 3
-    ports:
-      - "8000:8000"
     command: gunicorn --config gunicorn-cfg.py project.wsgi
     networks:
       - front-end
