@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  nginx-proxy:
+  nginx-marke-list:
     build:
       context: .
       dockerfile: Dockerfile_nginx
@@ -9,6 +9,8 @@ services:
       - ./default.conf:/tmp/default.conf
     environment:
       - DJANGO_SERVER_ADDR=django-app:8000
+    ports:
+      - "8081:8081"
     networks:
       - front-end
     depends_on:
@@ -19,7 +21,7 @@ services:
       timeout: 10s
       retries: 3
     command: /app/start.sh
-  django-app:
+  django-marke-list:
     build:
       context: .
       dockerfile: Dockerfile_django
@@ -29,7 +31,8 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
-    #command: gunicorn -w 3 -t 60 -b 0.0.0.0:8000 app:app
+    ports:
+      - "8000:8000"
     networks:
       - front-end
       - back-end
