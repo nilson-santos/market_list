@@ -8,7 +8,7 @@ services:
     volumes:
       - ./default.conf:/tmp/default.conf
     environment:
-      - DJANGO_SERVER_ADDR=django-app:8000
+      - DJANGO_SERVER_ADDR=django-marke-list:8000
     ports:
       - "8081:8081"
     networks:
