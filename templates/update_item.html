@@ -21,9 +21,14 @@
             {% endfor %}
           </select>
         </div>
-
-        <a href="{% url 'item_lista' %}" class="btn btn-secondary float-left" hx-get="{% url 'item_lista' %}" hx-target="#partial" hx-trigger="click">Back</a>
-        <button type="submit" class="btn btn-success float-right" hx-post="{% url 'item_update' item.id %}" hx-target="#partial" hx-trigger="click">Update</button>
+        <div class="row justify-content-between mt-4">
+            <div class="col-auto">
+                <a href="{% url 'item_lista' %}" class="btn btn-secondary float-left" hx-get="{% url 'item_lista' %}" hx-target="#partial" hx-trigger="click">Back</a>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success float-right" hx-post="{% url 'item_update' item.id %}" hx-target="#partial" hx-trigger="click">Update</button>
+            </div>
+        </div>
     </form>
 </div>
 {% endblock %}
