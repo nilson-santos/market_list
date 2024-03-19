@@ -9,10 +9,10 @@
         </div>
         <div class="form-group">
             <label>Amount</label>
-            <input name="{{ form.amount.name }}" type="number" class="form-control" {% if form.sobrenome.value != None %}value="{{ form.amount.value }}"{% endif %}>
+            <input name="{{ form.amount.name }}" type="number" style="width: 20%" class="form-control" {% if form.sobrenome.value != None %}value="{{ form.amount.value }}"{% endif %}>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="width: 50%">
           <label for="">Category</label>
           <select name="{{ form.category.name }}" class="form-control">
 
