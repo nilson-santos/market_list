@@ -32,7 +32,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 3
-    command: gunicorn --config gunicorn-cfg.py project.wsgi
+    command: sh -c "python manage.py migrate --no-input && python manage.py collectstatic --no-input && gunicorn --config gunicorn-cfg.py project.wsgi"
     networks:
       - front-end
       - back-end
