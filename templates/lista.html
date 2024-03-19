@@ -30,9 +30,9 @@
 
 <div style="height: 20px;"></div>
 
-<nav class="navbar navbar-light bg-light justify-content-center">
-    <input class="form-control mr-2 col-9" type="search" name="search" placeholder="Search..." aria-label="Search" hx-get="{% url 'search_view' %}" hx-target="#search-results" hx-trigger="keyup delay:500ms">
-</nav>
+<div class="navbar navbar-light bg-light justify-content-center">
+    <input class="form-control mr-2 col-9" style="width: 80%;" type="search" name="search" placeholder="Search..." aria-label="Search" hx-get="{% url 'search_view' %}" hx-target="#search-results" hx-trigger="keyup delay:500ms">
+</div>
 
 
 <div style="height: 20px;"></div>
@@ -40,9 +40,10 @@
 <div id="search-results">
 
 <table class="table">
+    <caption></caption>
   <thead>
     <tr>
-      <th scope="col">Itens</th>
+      <th scope="col">Items</th>
       <th scope="col"></th>
       <th scope="col">Edit</th>
       <th scope="col">Handle</th>
@@ -51,7 +52,7 @@
   <tbody>
   {% for item in items %}
     <tr class="table-{{ item.category.color }}">
-      <th scope="row" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" >{{ item.item }}</th>
+      <th scope="row" hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click">{{ item.item }}</th>
       <td hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click">{{ item.amount }}</td>
       <td>
           <a hx-get="{% url 'item_update' item.id %}" hx-target="#modal" hx-trigger="click" class="btn btn-default btn-sm btn-warning">
