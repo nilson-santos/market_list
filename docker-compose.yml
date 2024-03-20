@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  nginx-marke-list:
+  nginx-market-list:
     build:
       context: .
       dockerfile: Dockerfile_nginx
@@ -9,18 +9,18 @@ services:
       - ./default.conf:/tmp/default.conf
       - staticfiles:/app/staticfiles
     environment:
-      - DJANGO_SERVER_ADDR=django-marke-list:8000
+      - DJANGO_SERVER_ADDR=django-market-list:8000
     networks:
       - front-end
     depends_on:
-      - django-marke-list
+      - django-market-list
     healthcheck:
       test: ["CMD-SHELL", "curl --silent --fail localhost:8081/health-check || exit 1"]
       interval: 10s
       timeout: 10s
       retries: 3
     command: /app/start.sh
-  django-marke-list:
+  django-market-list:
     build:
       context: .
       dockerfile: Dockerfile_django
